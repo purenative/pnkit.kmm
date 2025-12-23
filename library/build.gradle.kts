@@ -4,15 +4,18 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.android.kotlin.multiplatform.library)
+    alias(libs.plugins.composeMultiplatform)
+    alias(libs.plugins.composeCompiler)
+
     alias(libs.plugins.vanniktech.mavenPublish)
 }
 
-group = "io.github.kotlin"
-version = "1.0.0"
+group = "com.purenative"
+version = "0.0.1"
 
 kotlin {
     androidLibrary {
-        namespace = "org.jetbrains.kotlinx.multiplatform.library.template"
+        namespace = "com.purenative.pnkit.kmm"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
         minSdk = libs.versions.android.minSdk.get().toInt()
 
@@ -36,11 +39,8 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            //put your multiplatform dependencies here
-        }
-
-        commonTest.dependencies {
-            implementation(libs.kotlin.test)
+            implementation(compose.runtime)
+            implementation(compose.foundation)
         }
     }
 }
@@ -50,13 +50,13 @@ mavenPublishing {
 
 //    signAllPublications()
 
-    coordinates(group.toString(), "library", version.toString())
+    coordinates(group.toString(), "PNKitKMM", version.toString())
 
     pom {
-        name = "My library"
-        description = "A library."
-        inceptionYear = "2024"
-        url = "https://github.com/kotlin/multiplatform-library-template/"
+        name = "PNKit for KMM"
+        description = ""
+        inceptionYear = "2025"
+        url = "https://github.com/purenative/pnkit.kmm.git"
         licenses {
             license {
                 name = "XXX"
